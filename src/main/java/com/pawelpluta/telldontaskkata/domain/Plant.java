@@ -1,19 +1,13 @@
 package com.pawelpluta.telldontaskkata.domain;
 
-public class Plant {
+public abstract class Plant {
 
-    private PlantType type;
-    private Integer soilMoisturePercentage;
-    private Integer wateringCount;
+    protected Integer soilMoisturePercentage;
+    protected Integer wateringCount;
 
-    public Plant(PlantType type, Integer soilMoisturePercentage, Integer wateringCount) {
-        this.type = type;
+    public Plant(Integer soilMoisturePercentage, Integer wateringCount) {
         this.soilMoisturePercentage = soilMoisturePercentage;
         this.wateringCount = wateringCount;
-    }
-
-    public PlantType getType() {
-        return type;
     }
 
     public Integer getSoilMoisturePercentage() {
@@ -31,4 +25,6 @@ public class Plant {
     public void setWateringCount(Integer wateringCount) {
         this.wateringCount = wateringCount;
     }
+
+    public abstract boolean needsWatering();
 }

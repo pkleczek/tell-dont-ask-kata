@@ -5,11 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.pawelpluta.telldontaskkata.domain.Crate;
-import com.pawelpluta.telldontaskkata.domain.PlantType;
-import com.pawelpluta.telldontaskkata.domain.Product;
-import com.pawelpluta.telldontaskkata.domain.ProductType;
-import com.pawelpluta.telldontaskkata.domain.RaisedBed;
+import com.pawelpluta.telldontaskkata.domain.*;
 import com.pawelpluta.telldontaskkata.repository.CrateRepository;
 import com.pawelpluta.telldontaskkata.repository.RaisedBedRepository;
 
@@ -65,7 +61,7 @@ public class Gathering {
 
     private List<Product> gatherVegetables(RaisedBed bed) {
         return bed.getPlants().stream()
-                  .filter(plant -> plant.getType().equals(PlantType.VEGETABLE))
+                  .filter(plant -> plant.getClass().equals(Vegetable.class))
                   .filter(plant -> plant.getWateringCount() > 5)
                   .map(plant -> {
                       plant.setWateringCount(0);
@@ -75,7 +71,7 @@ public class Gathering {
 
     private List<Product> gatherFlowers(RaisedBed bed) {
         return bed.getPlants().stream()
-                  .filter(plant -> plant.getType().equals(PlantType.FLOWER))
+                  .filter(plant -> plant.getClass().equals(Flower.class))
                   .filter(plant -> plant.getWateringCount() > 3)
                   .map(plant -> {
                       plant.setWateringCount(0);
@@ -85,7 +81,7 @@ public class Gathering {
 
     private List<Product> gatherFruits(RaisedBed bed) {
         return bed.getPlants().stream()
-                  .filter(plant -> plant.getType().equals(PlantType.TREE))
+                  .filter(plant -> plant.getClass().equals(Tree.class))
                   .filter(plant -> plant.getWateringCount() > 10)
                   .map(plant -> {
                       plant.setWateringCount(0);
